@@ -35,13 +35,13 @@ const TripDetails = () => {
             const token = localStorage.getItem('token');
             if (!token) { navigate('/login'); return; }
 
-            const expResponse = await axios.get(`http://localhost:5000/api/expenses/${tripId}`, {
+            const expResponse = await axios.get(`https://trucklogic-backend.onrender.com/api/expenses/${tripId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setExpenses(expResponse.data.data);
 
             try {
-                const tripResponse = await axios.get(`http://localhost:5000/api/trips/single/${tripId}`, {
+                const tripResponse = await axios.get(`https://trucklogic-backend.onrender.com/api/trips/single/${tripId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setTripInfo(tripResponse.data.data);
@@ -49,7 +49,7 @@ const TripDetails = () => {
                 setTripInfo({ freightAmount: 0, status: 'Ongoing', source: 'N/A', destination: 'N/A' });
             }
 
-            const analyticsResponse = await axios.get(`http://localhost:5000/api/expenses/analytics/${tripId}`, {
+            const analyticsResponse = await axios.get(`https://trucklogic-backend.onrender.com/api/expenses/analytics/${tripId}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setChartData(analyticsResponse.data.data);

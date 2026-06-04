@@ -28,12 +28,12 @@ const TruckDetails = () => {
                 return;
             }
 
-            const response = await axios.get(`http://localhost:5000/api/trips/${id}`, {
+            const response = await axios.get(`https://trucklogic-backend.onrender.com/api/trips/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTrips(response.data.data);
 
-            const trucksResponse = await axios.get('http://localhost:5000/api/trucks', {
+            const trucksResponse = await axios.get('https://trucklogic-backend.onrender.com/api/trucks', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             const currentTruck = trucksResponse.data.data.find(t => t._id === id);
